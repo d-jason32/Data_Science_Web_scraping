@@ -8,9 +8,15 @@ survey = (
 
 def get_info(state_abbr: str, year: int, question_text: str):
     parameter = {
-        "$select": (
-            "year, area, area_abbr, question, "
-            "percent, low_confidence_interval, high_confidence_interval, "
+        "$select":
+        (
+            "year, "
+            "area, "
+            "area_abbr, "
+            "question, "
+            "percent, "
+            "low_confidence_interval, "
+            "high_confidence_interval, "
             "confidence_interval_formatted"
         ),
         "$where": (
@@ -21,15 +27,19 @@ def get_info(state_abbr: str, year: int, question_text: str):
     }
 
     response = requests.get(url, params=parameter)
+
     response.raise_for_status()
+
     return response.json()
 
 if __name__ == "__main__":
     rows = get_info("NY", 2023, survey)
-    print(f"Rows returned: {len(rows)}")
+
     if rows:
         r = rows[0]
         print(
-            f"{r['year']} {r['area_abbr']} ({r['area']}): "
+            f"{r['year']} "
+            f"{r['area_abbr']} "
+            f"({r['area']}): "
             f"{r['percent']}% "
         )
