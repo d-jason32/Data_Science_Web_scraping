@@ -57,7 +57,7 @@ def get_info(state_abbr: str, year: int, question_text: str):
     r.raise_for_status()
     return r.json()
 
-def fetch_all_states(year: int, question: str, outfile: str = "program2.csv"):
+def fetch_all_states(year: int, question: str, outfile: str = "program1.csv"):
     results = []
 
     for abbr in states:
