@@ -7,7 +7,7 @@ url = "https://chronicdata.cdc.gov/resource/dttw-5yxu.json"
 # The question from the survey
 DEPRESSION_Q = "Ever told you that you have a form of depression?"
 
-# All 50 states (two-letter abbreviations)
+# All 50 states
 states = [
     "AL","AK",
     "AZ","AR",
@@ -71,7 +71,6 @@ def fetch_all_states(year: int, question: str, outfile: str = "program1.csv"):
                 "percent_yes": row.get("data_value")
             })
 
-    # Write CSV with only 4 columns
     with open(outfile, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=["year","state","state_abbr","percent_yes"])
         writer.writeheader()
